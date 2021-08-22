@@ -74,6 +74,12 @@ def login():
 
 
 #This is main branch for allocation of signup and login API for books using cluster 
+@app.route("/add",methods=['POST','GET'])
+def add():
+    incoming_json=request.json
+    db.books.insert_one({"name":incoming_json["name"],"author":incoming_json["author"]})
+    return jsonify("You have successfully added your book onto our database")
+
 
 
 if __name__=="__main__":
