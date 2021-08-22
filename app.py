@@ -83,7 +83,7 @@ def get_book_don(book):
         return jsonify(book_retr)
 
 @app.route("/delete/<book>",methods=["POST","GET"])
-def delete(book):
+def delete_don(book):
     try:
         db.books.delete_many({"name":book})
         return jsonify("database successfully updated")
