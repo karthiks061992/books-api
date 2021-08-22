@@ -85,6 +85,8 @@ def get_book_don(book):
     book_retr=list(db.books.find({"name":book},{"_id":0}))
     if(len(book_retr)==0):
         return jsonify("no books were found")
+    else:
+        return jsonify(book_retr)
 
 @app.route("/update",methods=['POST','GET'])
 def update():
@@ -109,13 +111,8 @@ def update():
             return jsonify("OOPS connection error")
 
     else:
-<<<<<<< HEAD
         return jsonify("Book does not exist")
 
-    
-
-=======
-        return jsonify(book_retr)
 
 @app.route("/delete/<book>",methods=["POST","GET"])
 def delete_don(book):
@@ -124,7 +121,6 @@ def delete_don(book):
         return jsonify("database successfully updated")
     except:
         return jsonify("something went wrong")
->>>>>>> get_details_and_delete
 
 
 
