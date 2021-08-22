@@ -74,6 +74,7 @@ def login():
 
 
 #This is main branch for allocation of signup and login API for books using cluster 
+
 @app.route("/add",methods=['POST','GET'])
 def add():
     incoming_json=request.json
@@ -84,16 +85,34 @@ def get_book_don(book):
     book_retr=list(db.books.find({"name":book},{"_id":0}))
     if(len(book_retr)==0):
         return jsonify("no books were found")
-    else:
-        return jsonify(book_retr)
 
-@app.route("/delete/<book>",methods=["POST","GET"])
-def delete(book):
-    try:
-        db.books.delete_many({"name":book})
-        return jsonify("database successfully updated")
-    except:
-        return jsonify("something went wrong")
+@app.route("/update",methods=['POST','GET'])
+def update():
+    def check_existence(book):
+        exist=list(db.books.find({"name":book}))
+        if len(exist)==0:
+            #book not found
+            return 0
+        else:
+            return 1
+
+    incoming_json=request.json
+    book_to_be_updated=incoming_json["book_original"]
+    updated_book_name=incoming_json["updated_name"]
+    updated_author=incoming_json["updated_author"]
+    flag=check_existence(book_to_be_updated)
+    if(flag):
+        try:
+            db.books.update_many({"name":book_to_be_updated},{"$set":{"name":updated_book_name,"author":updated_author}})
+            return jsonify("successsfully updated")
+        except:
+            return jsonify("OOPS connection error")
+
+    else:
+        return jsonify("Book does not exist")
+
+    
+
 
 
 
