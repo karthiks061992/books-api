@@ -80,7 +80,7 @@ def add():
     db.books.insert_one({"name":incoming_json["name"],"author":incoming_json["author"]})
     return jsonify("You have successfully added your book onto our database")
 @app.route("/get_details/<book>",methods=['POST','GET'])#Route for getting details of a book
-def get_book(book):
+def get_book_don(book):
     book_retr=list(db.books.find({"name":book},{"_id":0}))
     if(len(book_retr)==0):
         return jsonify("no books were found")
