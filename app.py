@@ -109,10 +109,22 @@ def update():
             return jsonify("OOPS connection error")
 
     else:
+<<<<<<< HEAD
         return jsonify("Book does not exist")
 
     
 
+=======
+        return jsonify(book_retr)
+
+@app.route("/delete/<book>",methods=["POST","GET"])
+def delete_don(book):
+    try:
+        db.books.delete_many({"name":book})
+        return jsonify("database successfully updated")
+    except:
+        return jsonify("something went wrong")
+>>>>>>> get_details_and_delete
 
 
 
