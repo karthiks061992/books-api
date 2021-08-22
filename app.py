@@ -8,7 +8,7 @@
 # #initializing flask app
 # app=Flask(__name__)
 # app.secret_key="secretkey"
-# CONNECTION_STRING = "mongodb+srv://karthik:karthik@mumbai.jjic1.mongodb.net/Mumbai?retryWrites=true&w=majority"
+# CONNECTION_STRING = ""
 # client = pymongo.MongoClient(CONNECTION_STRING)
 # db = client.get_database('Mumbai')
 # #user_collection = pymongo.collection.Collection(db, 'user_collection')
@@ -28,7 +28,7 @@ from flask_pymongo import pymongo
 #This is where the setting happens
 app=Flask(__name__)
 app.secret_key="Elon musk"
-CONNECTION_URL="mongodb+srv://karthik:karthik@mumbai.jjic1.mongodb.net/Mumbai?retryWrites=true&w=majority"
+CONNECTION_URL=""
 client = pymongo.MongoClient(CONNECTION_URL)
 db=client.get_database("Mumbai")
 @app.route("/signup",methods=['POST','GET'])
